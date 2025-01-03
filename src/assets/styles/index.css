@@ -164,3 +164,21 @@ label{
 	opacity: 0;
 	transition: 0.5s;
 }
+
+.pesquisar {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	margin-bottom: 20px;
+	gap: 12px;
+}
+
+#filtrar-tabela {
+	width: 250px;
+	height: 28px;
+	padding-left: 8px;
+}
+
+.invisivel {
+	display: none;
+}
