@@ -1,6 +1,6 @@
 let botaoBuscar = document.querySelector("#buscar-pacientes")
 
-botaoBuscar.addEventListener("click", function() {
+botaoBuscar.addEventListener("click", function () {
     // XMLHttpRequest é um objeto responsavel por fazer requisições HTTP
     let xhr = new XMLHttpRequest()
 
@@ -14,19 +14,20 @@ botaoBuscar.addEventListener("click", function() {
         let erroAjax = document.querySelector("#erro-ajax")
 
         // Validação da requisição
-        if(xhr == 200) {
+        if (xhr.status == 200) {
+            erroAjax.classList.add("invisivel")
             // Coletando a resposta do Json
             let resposta = xhr.responseText
 
-            // Convetendo o Json para Objeto JS
+            // Convertendo o Json para Objeto JS
             let pacientes = JSON.parse(resposta)
 
-            pacientes.forEach(function(paciente) {
+            pacientes.forEach(function (paciente) {
                 adicionaPacienteNaTabela(paciente)
             })
-         } else {
-            erroAjax.classList.remove("invisível")
-        } 
+        } else {
+            erroAjax.classList.remove("invisivel")
+        }
     })
 
     // Envio da ordem de requisição
