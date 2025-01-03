@@ -9,18 +9,24 @@ botaoBuscar.addEventListener("click", function() {
     // Comando que abre a conexão com o endereço desejado. Temos que mostrar qual tipo de requisição queremos fazer, no caso aqui, o GET (Pegar/Coletar), no endereço: ...
     xhr.open("GET", "https://raw.githubusercontent.com/loresgarcia/Pacientes-API/master/pacientes.json");
 
-
     xhr.addEventListener("load", function() {
-        // Coletando a resposta do Json
-        let resposta = xhr.responseText
+        // Pegando o span de erro no HTML
+        let erroAjax = document.querySelector("#erro-ajax")
 
-        // Convetendo o Json para Objeto JS
-        let pacientes = JSON.parse(resposta)
+        // Validação da requisição
+        if(xhr == 200) {
+            // Coletando a resposta do Json
+            let resposta = xhr.responseText
 
-        pacientes.forEach(function(paciente) {
-        adicionaPacienteNaTabela(paciente)
+            // Convetendo o Json para Objeto JS
+            let pacientes = JSON.parse(resposta)
 
-        })
+            pacientes.forEach(function(paciente) {
+                adicionaPacienteNaTabela(paciente)
+            })
+         } else {
+            erroAjax.classList.remove("invisível")
+        } 
     })
 
     // Envio da ordem de requisição
