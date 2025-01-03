@@ -12,24 +12,16 @@ botaoAdicionar.addEventListener("click", function(event) {
     // Pegando os valores inseridos no formulario
     let paciente = obtemPacienteDoFormulario(form)
 
-    // Criando os elementos no HTML
-    let pacienteTr =  montaTr(paciente)
-
     // Criando uma validação de erro
     let erros = validaPaciente(paciente)
 
-    console.log(erros)
     if(erros.length > 0) {
         exibeMensagensDeErro(erros)
-
         return
     }
 
-    // Selecionando o Tbody (Tabela) do HTML
-    let tabela = document.querySelector("#tabela-pacientes")
-    
-    // Colocando o "tr" dentro do tbody do HTML / Adicionando paciente na tabela
-    tabela.appendChild(pacienteTr)
+    // Adiciona os pacientes na tabela
+    adicionaPacienteNaTabela(paciente)
 
     form.reset( );
 
@@ -37,6 +29,18 @@ botaoAdicionar.addEventListener("click", function(event) {
     let mensagensErro = document.querySelector("#mensagens-erro")
     mensagensErro.innerHTML = ""
 })
+
+// Função: Adiciona pacientes na tabela
+function adicionaPacienteNaTabela(paciente) {
+    // Criando os elementos no HTML
+    let pacienteTr =  montaTr(paciente)
+
+    // Selecionando o Tbody (Tabela) do HTML
+    let tabela = document. querySelector("#tabela-pacientes")
+    
+    // Colocando o "tr" dentro do tbody do HTML / Adicionando paciente na tabela
+    tabela.appendChild(pacienteTr)
+}
 
 // Função: Pegando os valores inseridos no formulario
 function obtemPacienteDoFormulario(form) {
